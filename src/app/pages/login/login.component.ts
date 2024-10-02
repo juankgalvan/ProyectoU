@@ -38,8 +38,10 @@ export class LoginComponent  implements OnInit {
   ngOnInit() {}
 
 
-  formulario(){
+  formulario(data:ilogin){
     console.log("Usuario ingreso ",this.frmLogin.value)
-    this.api.login()
+    this.api.login(data).subscribe(retorno=>{
+      console.log(retorno)
+    })
   }
 }
