@@ -28,7 +28,7 @@
 <ion-content>
   <ion-card>
 
-<form [formGroup]="frmRegistro" (ngSubmit)="formulario()">
+<form [formGroup]="frmRegistro" (ngSubmit)="formulario(frmRegistro.value)">
       
   <ion-item>
     <ion-label position="floating">Nombre</ion-label>

@@ -1,5 +1,5 @@
 export interface ilogin {
-    user:String,
-    pass:String
+    email:String,
+    contrasena:String
 }
 

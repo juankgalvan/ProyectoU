@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from  '@ionic/angular';
 import { Router } from '@angular/router';
+import {ApiServiceService} from '../../service/api-service.service'
+import {iReg} from '../../../models/reqReg.interface'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 
 @Component({
   selector: 'app-registro',
-  imports:[IonicModule,ReactiveFormsModule],
+  imports:[IonicModule,ReactiveFormsModule, HttpClientModule],
   standalone:true,
+  providers:[ApiServiceService],
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss'],
 })
@@ -24,7 +28,7 @@ export class RegistroComponent  implements OnInit {
 
   frmRegistro:FormGroup;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private api:ApiServiceService) { 
     this.frmRegistro= new FormGroup({
       nombre: new FormControl('',Validators.required),
       apellido: new FormControl('',Validators.required),
@@ -38,7 +42,9 @@ export class RegistroComponent  implements OnInit {
   ngOnInit() {}
 
 
-  formulario(){
-    console.log("Registro existoso del usuario",this.frmRegistro.value)
+  formulario(data:iReg){
+    this.api.reg(data).subscribe(retorno=>{
+      console.log(retorno)
+    })
   }
 }
